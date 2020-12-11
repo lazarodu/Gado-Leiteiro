@@ -1,14 +1,14 @@
 'use strict'
 
-/** @typedef {import('@adonisjs/framework/src/Request')} Request */
-/** @typedef {import('@adonisjs/framework/src/Response')} Response */
-/** @typedef {import('@adonisjs/framework/src/View')} View */
+/* @typedef {import('@adonisjs/framework/src/Request')} Request */
+/* @typedef {import('@adonisjs/framework/src/Response')} Response */
+/* @typedef {import('@adonisjs/framework/src/View')} View */
+const Conteudo = use ('App/Models/Conteudo')
 
-/**
- * Resourceful controller for interacting with conteudos
+/* Resourceful controller for interacting with conteudos
  */
 class ConteudoController {
-  /**
+  /*
    * Show a list of all conteudos.
    * GET conteudos
    *
@@ -18,32 +18,11 @@ class ConteudoController {
    * @param {View} ctx.view
    */
   async index ({ request, response, view }) {
+    const conts = await Conteudo.all()
+    return conts
   }
 
-  /**
-   * Render a form to be used for creating a new conteudo.
-   * GET conteudos/create
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async create ({ request, response, view }) {
-  }
-
-  /**
-   * Create/save a new conteudo.
-   * POST conteudos
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async store ({ request, response }) {
-  }
-
-  /**
+  /*
    * Display a single conteudo.
    * GET conteudos/:id
    *
@@ -53,41 +32,10 @@ class ConteudoController {
    * @param {View} ctx.view
    */
   async show ({ params, request, response, view }) {
+    const conts = await Conteudo.findOrFail(params.id)
+    return conts
   }
 
-  /**
-   * Render a form to update an existing conteudo.
-   * GET conteudos/:id/edit
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async edit ({ params, request, response, view }) {
-  }
-
-  /**
-   * Update conteudo details.
-   * PUT or PATCH conteudos/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async update ({ params, request, response }) {
-  }
-
-  /**
-   * Delete a conteudo with id.
-   * DELETE conteudos/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async destroy ({ params, request, response }) {
-  }
 }
 
 module.exports = ConteudoController
